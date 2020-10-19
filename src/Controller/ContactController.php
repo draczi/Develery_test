@@ -15,8 +15,8 @@ class ContactController extends AbstractController
      */
     public function createNewMessage(Request $request)
     {
-        $contact = new Contact();
-        $contact = $this->createForm(ContactType::class, $contact);
+        $newCsontact = new Contact();
+        $contact = $this->createForm(ContactType::class, $newContact);
 
         $contact->handleRequest($request);
 
@@ -29,11 +29,8 @@ class ContactController extends AbstractController
                 return $this->redirect($this->generateUrl('contact'));
             } else {
                 $this->addFlash('error', 'Hiba! Kérjük töltsd ki az összes mezőt!');
-                return $this->render('contact/index.html.twig', [
-                    'contact' => $contact->createView()
-                ]);
+                return $this->redirect($this->generateUrl('contact'));
             }
-                //return $this->redirect($this->generateUrl('contact'));
         }
 
         return $this->render('contact/index.html.twig', [
