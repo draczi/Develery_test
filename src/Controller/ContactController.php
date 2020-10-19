@@ -25,6 +25,7 @@ class ContactController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($newContact);
                 $em->flush();
+
                 $this->addFlash('success', "Köszönjük szépen a kérdésedet. Válaszunkkal hamarosan keresünk a megadott e-mail címen.");
                 return $this->redirect($this->generateUrl('contact'));
             } else {
